@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head><title>OTP</title>
+<style>
+  form {
+    display: inline;
+  }
+  .apps a {
+    width: 25%;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+<h1>OTP</h1>
+<ul class='apps'>
+{{ range $name, $v := .apps }}
+<li>
+  <a href="/apps/{{$name}}">{{$name}}</a>
+  <form action="/apps/{{$name}}/delete" method="post">
+    <input type='submit' value='Delete'>
+  </form>
+</li>
+{{ end }}
+</ul>
+<form action='/apps' method='post'>
+<p>Add app:
+<input type='text' name='name'>
+Secret:
+<input type='text' name='secret'>
+<input type='submit' value='Add'>
+</p>
+</form>
+</body>
+</html>
